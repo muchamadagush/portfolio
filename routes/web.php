@@ -15,7 +15,7 @@ use App\Http\Controllers\PortfolioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.views.index');
 });
 
 Auth::routes();

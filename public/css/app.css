@@ -10903,3 +10903,24 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-item {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.nav-link {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
