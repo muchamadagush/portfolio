@@ -1,4 +1,4 @@
-@extends('layouts.myLayouts')
+@extends('layouts.myLayouts', ['title' => 'Contact - Muchamad Agus Hermawan')
 
 @section('css')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -7,7 +7,7 @@
 @section('content')
 <div class="pt-5">
     <div class="container">
-      <h2 class="text-center mt-5">Contact Us</h2>
+      <h2 class="text-center mt-5">Contact Me</h2>
       <div class="row">
         <div class="col-md-7 col-sm-12">
           <div class="card bg-primary text-white text-center">
