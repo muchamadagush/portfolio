@@ -10924,3 +10924,23 @@ body {
   padding-right: 1rem !important;
 }
 
+@media (min-width: 1200px) {
+  .jumbotron {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url(/images/bg.png?a34294f61b461628be57bea4239b58c4);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+  }
+
+  .jumbotron .container {
+    padding-top: 15%;
+  }
+
+  .jumbotron .container span {
+    font-weight: 700;
+  }
+}
+

@@ -27,3 +27,24 @@ body {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
 }
+
+
+@media (min-width: 1200px) {
+  .jumbotron {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('../../public/uploads/images/bg.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+  
+    .container {
+      padding-top: 15%;
+
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}
