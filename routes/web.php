@@ -14,13 +14,19 @@ use App\Http\Controllers\PortfolioController;
 |
 */
 
+// Home
 Route::get('/', function () {
     return view('dashboard.views.index');
-});
+})->name('home');
+
+// Contact
+Route::get('/contact', function () {
+    return view('dashboard.views.contact');
+})->name('contact');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Portfolio
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolioIndex');

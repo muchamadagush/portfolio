@@ -18,29 +18,31 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
+
 </head>
 <body>
     <div id="app">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="#">Hermawan</a>
+          <a class="navbar-brand" href="{{ route('home') }}">Hermawan</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="#">About Us</a>
+              <a class="nav-item nav-link" href="#">About Me</a>
               <a class="nav-item nav-link" href="#">Portfolio</a>
               <a class="nav-item nav-link" href="#">Blog</a>
-              <a class="nav-item nav-link" href="#">Contact</a>
+              <a class="nav-item nav-link" href="{{ route('contact') }}">Contact</a>
             </div>
           </div>
         </div>
       </nav>
 
-        <main>
-            @yield('content')
-        </main>
+      <main>
+          @yield('content')
+      </main>
     </div>
 </body>
 </html>

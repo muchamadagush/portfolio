@@ -9,6 +9,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: #e9ecef;
 }
 
 .navbar-brand {
@@ -46,5 +47,31 @@ body {
         font-weight: 700;
       }
     }
+  }
+
+  .middle {
+    text-align: center;
+    transform: translateY(-50%);
+    .but {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: #f1f1f1;
+      margin: 10px;
+      border-radius: 30%;
+      box-shadow: 0 5px 15px -5px #00000070;
+      color: #3498db;
+      overflow: hidden;
+    }
+    
+    .but i {
+        line-height: 50px;
+        font-size: 25px;
+        transition: 0.2s linear;
+    }
+  }
+
+  .but:hover i {
+    transform: scale(1.3);
   }
 }
