@@ -44,24 +44,38 @@ class PortfolioController extends Controller
     {
         $portfolio = new Portfolio();
 
-        $portfolio->title = $request->title;
-        $portfolio->description = $request->description;
-        $portfolio->slug = Str::slug($request->title);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required'
+        ]);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/images/portfolio', $filename);
-            $portfolio->image = $filename;
+        if ($validator->fails()) {
+            return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput();
         } else {
-            return $request;
-            $portfolio->image = '';
-        }
-        
-        $portfolio->save();
 
-        return redirect()->route('portfolioIndex');
+            
+            $portfolio->title = $request->title;
+            $portfolio->description = $request->description;
+            $portfolio->slug = Str::slug($request->title);
+            
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/images/portfolio', $filename);
+                $portfolio->image = $filename;
+            } else {
+                return $request;
+                $portfolio->image = '';
+            }
+            
+            $portfolio->save();
+            
+            return redirect()->route('portfolioIndex');
+        }
     }
 
     /**
@@ -145,5 +159,20 @@ class PortfolioController extends Controller
         $portfolio->delete();
 
         return redirect()->route('portfolioIndex');
+    }
+
+    public function display()
+    {
+        $portfolios = Portfolio::orderBy('id', 'DESC')->paginate(8);
+
+        return view('dashboard.views.portfolio', compact('portfolios'));
+    }
+
+    public function detail($id)
+    {
+        $portfolio = Portfolio::find($id);
+        $image =  $portfolio->image;
+
+        return view('dashboard.views.portfolioDetail', compact('portfolio'));
     }
 }

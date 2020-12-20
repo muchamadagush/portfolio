@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('dashboard.views.index');
 })->name('home');
 
+// Portfolio view user
+Route::get('/portfolio', [PortfolioController::class, 'display'])->name('portfolioDisplay');
+Route::get('/portfolio/detail/{id}', [PortfolioController::class, 'detail'])->name('portfolioDetail');
+
 // Contact
 Route::get('/contact', function () {
     return view('dashboard.views.contact');
@@ -29,7 +33,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Portfolio
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolioIndex');
+Route::get('/portfolio/list', [PortfolioController::class, 'index'])->name('portfolioIndex');
 Route::get('/portfolio/add', [PortfolioController::class, 'create'])->name('portfolioCreate');
 Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolioStore');
 Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolioEdit');
