@@ -9,7 +9,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #e9ecef;
+  background-color: #c9e8df;
 }
 
 .navbar-brand {
@@ -29,8 +29,13 @@ body {
   padding-right: 1rem !important;
 }
 
+.about {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
 
-@media (min-width: 1200px) {
+
+@media (min-width: 992px) {
   .jumbotron {
     height: 100vh;
     margin: 0;
@@ -105,5 +110,24 @@ body {
         box-shadow: 1px 1px 1px 1px darkgray;
       }
     }
+  }
+
+  .about { 
+
+    h3 {
+      font-size: 2.5rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+  }
+}
+
+
+@media (max-width: 768px) {
+  nav {
+    background-color: $blue;
   }
 }

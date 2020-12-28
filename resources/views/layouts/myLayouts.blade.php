@@ -31,7 +31,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="#">About Me</a>
+              <a class="nav-item nav-link" href="{{ route('skillDisplay') }}">About Me</a>
               <a class="nav-item nav-link" href="{{ route('portfolioDisplay') }}">Portfolio</a>
               <a class="nav-item nav-link" href="#">Blog</a>
               <a class="nav-item nav-link" href="{{ route('contact') }}">Contact</a>

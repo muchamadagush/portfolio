@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,17 @@ Route::get('/', function () {
 Route::get('/portfolio', [PortfolioController::class, 'display'])->name('portfolioDisplay');
 Route::get('/portfolio/detail/{id}', [PortfolioController::class, 'detail'])->name('portfolioDetail');
 
+// About view user
+Route::get('/about', [SkillController::class, 'display'])->name('skillDisplay');
+
 // Contact
 Route::get('/contact', function () {
     return view('dashboard.views.contact');
 })->name('contact');
+
+
+
+
 
 Auth::routes();
 
@@ -40,3 +48,8 @@ Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('
 Route::post('/portfolio/update', [PortfolioController::class, 'update'])->name('portfolioUpdate');
 Route::get('/portfolio/show/{id}', [PortfolioController::class, 'show'])->name('portfolioShow');
 Route::get('/portfolio/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolioDestroy');
+
+// Skill
+Route::get('/skill', [SkillController::class, 'index'])->name('skillIndex');
+Route::get('/skill/add', [SkillController::class, 'create'])->name('skillCreate');
+Route::post('/skill/store', [SkillController::class, 'store'])->name('skillStore');
