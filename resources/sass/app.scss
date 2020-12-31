@@ -34,23 +34,36 @@ body {
   margin-bottom: 6rem;
 }
 
+#index {
+  height: 100vh;
+
+  h1 {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-weight: 700;
+  }
+}
+
+.pagination {
+  float: right;
+  margin-top: 1rem;
+}
+
+iframe {
+  padding: .75rem;
+}
+
+
+
 
 @media (min-width: 992px) {
-  .jumbotron {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-image: url('../../public/uploads/images/bg.png');
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-  
-    .container {
-      padding-top: 15%;
-
-      span {
-        font-weight: 700;
-      }
+  #index {
+    h1 {
+      font-size: 8rem;
     }
   }
 
@@ -93,11 +106,6 @@ body {
     }
   }
 
-  .pagination {
-    float: right;
-    margin-top: 1rem;
-  }
-
   .card-portfolio {
     padding: .7rem .5rem;
     
@@ -126,8 +134,32 @@ body {
 }
 
 
+@media (max-width: 992px) {
+  #app {
+    nav.navbar.navbar-expand-lg.navbar-light.fixed-top {
+      background-color: $blue;
+    }
+  }
+
+  #index {
+    h1 {
+      font-size: 6rem;
+    }
+  }
+
+  .card {
+    margin-top: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
-  nav {
-    background-color: $blue;
+  #index {
+    h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .card {
+    margin-top: .5rem;
   }
 }
