@@ -10908,6 +10908,10 @@ body {
   background-color: #c9e8df;
 }
 
+.card {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .navbar-brand {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
@@ -10949,6 +10953,56 @@ body {
 
 iframe {
   padding: 0.75rem;
+}
+
+#blog {
+  margin-top: 5rem;
+}
+
+#blog .container nav ol.breadcrumb {
+  border-bottom: 0.5px solid #0057ff;
+  background-color: transparent;
+}
+
+#blog .container nav ol.breadcrumb li a {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#blog .container nav ol.breadcrumb li a:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+  text-decoration: none;
+}
+
+#blog .container .row .card .card-body {
+  padding: 0.5rem;
+}
+
+#blog .container .row .content h3 {
+  font-size: 40px;
+  color: #000;
+  text-transform: capitalize;
+  margin-top: 5;
+  margin-bottom: 15;
+  line-height: 1.125 !important;
+  float: left;
+  width: 100%;
+  font-weight: 700;
+}
+
+#blog .container .row .content p {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-top: 0;
+  font-size: 15px;
+}
+
+#blog .list-blog {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #0057ff;
 }
 
 @media (min-width: 992px) {

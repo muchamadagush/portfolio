@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,6 @@ Route::get('/contact', function () {
 
 
 
-
-Auth::routes();
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Portfolio
@@ -53,3 +51,15 @@ Route::get('/portfolio/destroy/{id}', [PortfolioController::class, 'destroy'])->
 Route::get('/skill', [SkillController::class, 'index'])->name('skillIndex');
 Route::get('/skill/add', [SkillController::class, 'create'])->name('skillCreate');
 Route::post('/skill/store', [SkillController::class, 'store'])->name('skillStore');
+
+// Blog
+Route::get('/blog', [BlogController::class, 'index'])->name('blogIndex');
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blogCreate');
+Route::post('/blog/create/images', [BlogController::class, 'contentImage'])->name('blogImage');
+Route::post('/blog/store', [BlogController::class, 'store'])->name('blogStore');
+Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blogEdit');
+Route::post('/blog/update', [BlogController::class, 'update'])->name('blogUpdate');
+Route::get('/blog/list', [BlogController::class, 'list'])->name('blogList');
+Route::get('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blogShow');
+Route::post('/blog/comment', [BlogController::class, 'comment'])->name('blogComment');

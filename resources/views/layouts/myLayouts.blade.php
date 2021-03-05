@@ -14,7 +14,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@400;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,7 +33,7 @@
             <div class="navbar-nav ml-auto">
               <a class="nav-item nav-link" href="{{ route('skillDisplay') }}">About Me</a>
               <a class="nav-item nav-link" href="{{ route('portfolioDisplay') }}">Portfolio</a>
-              <a class="nav-item nav-link" href="#">Blog</a>
+              <a class="nav-item nav-link" href="{{ route('blogIndex') }}">Blog</a>
               <a class="nav-item nav-link" href="{{ route('contact') }}">Contact</a>
             </div>
           </div>
@@ -44,5 +44,7 @@
           @yield('content')
       </main>
     </div>
+
+    @yield('js')
 </body>
 </html>
