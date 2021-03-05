@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\BlogController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,30 +37,30 @@ Route::get('/contact', function () {
 
 
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 // Portfolio
 Route::get('/portfolio/list', [PortfolioController::class, 'index'])->name('portfolioIndex');
-Route::get('/portfolio/add', [PortfolioController::class, 'create'])->name('portfolioCreate');
-Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolioStore');
-Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolioEdit');
-Route::post('/portfolio/update', [PortfolioController::class, 'update'])->name('portfolioUpdate');
-Route::get('/portfolio/show/{id}', [PortfolioController::class, 'show'])->name('portfolioShow');
-Route::get('/portfolio/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolioDestroy');
+Route::get('/portfolio/add', [PortfolioController::class, 'create'])->name('portfolioCreate')->middleware('auth');
+Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolioStore')->middleware('auth');
+Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolioEdit')->middleware('auth');
+Route::post('/portfolio/update', [PortfolioController::class, 'update'])->name('portfolioUpdate')->middleware('auth');
+Route::get('/portfolio/show/{id}', [PortfolioController::class, 'show'])->name('portfolioShow')->middleware('auth');
+Route::get('/portfolio/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolioDestroy')->middleware('auth');
 
 // Skill
 Route::get('/skill', [SkillController::class, 'index'])->name('skillIndex');
-Route::get('/skill/add', [SkillController::class, 'create'])->name('skillCreate');
-Route::post('/skill/store', [SkillController::class, 'store'])->name('skillStore');
+Route::get('/skill/add', [SkillController::class, 'create'])->name('skillCreate')->middleware('auth');
+Route::post('/skill/store', [SkillController::class, 'store'])->name('skillStore')->middleware('auth');
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blogIndex');
-Route::get('/blog/create', [BlogController::class, 'create'])->name('blogCreate');
-Route::post('/blog/create/images', [BlogController::class, 'contentImage'])->name('blogImage');
-Route::post('/blog/store', [BlogController::class, 'store'])->name('blogStore');
-Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blogEdit');
-Route::post('/blog/update', [BlogController::class, 'update'])->name('blogUpdate');
-Route::get('/blog/list', [BlogController::class, 'list'])->name('blogList');
-Route::get('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy');
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blogCreate')->middleware('auth');
+Route::post('/blog/create/images', [BlogController::class, 'contentImage'])->name('blogImage')->middleware('auth');
+Route::post('/blog/store', [BlogController::class, 'store'])->name('blogStore')->middleware('auth');
+Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blogEdit')->middleware('auth');
+Route::post('/blog/update', [BlogController::class, 'update'])->name('blogUpdate')->middleware('auth');
+Route::get('/blog/list', [BlogController::class, 'list'])->name('blogList')->middleware('auth');
+Route::get('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy')->middleware('auth');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blogShow');
 Route::post('/blog/comment', [BlogController::class, 'comment'])->name('blogComment');
+
+Auth::routes();
