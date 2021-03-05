@@ -44,7 +44,8 @@ class BlogController extends Controller
     {
         $validator = $request->validate([
             'title' => 'required|unique:blogs|max:150',
-            'content' => 'required'
+            'content' => 'required',
+            'logo' => 'required'
         ]);
 
         $blog = new Blog();
@@ -56,6 +57,16 @@ class BlogController extends Controller
             $blog->title = $request->title;
             $blog->slug = Str::slug($request->title);
             $blog->content = $request->content;
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/images/blog', $filename);
+                $blog->logo = $filename;
+            } else {
+                return $request;
+                $blog->logo = '';
+            }
             $blog->save();
 
             return redirect()->route('blogList')->with(['success' => 'Artikel disimpan']);

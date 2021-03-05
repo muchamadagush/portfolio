@@ -10997,6 +10997,10 @@ iframe {
   font-size: 15px;
 }
 
+#blog .container .row .content p img {
+  width: 100%;
+}
+
 #blog .list-blog {
   display: flex;
   flex-direction: row;

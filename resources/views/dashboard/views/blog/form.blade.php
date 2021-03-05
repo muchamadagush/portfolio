@@ -15,16 +15,21 @@
       </ol>
     </nav>
 
-    <form action="{{ route($url) }}" method="POST">
+    <form action="{{ route($url) }}" method="POST" enctype="multipart/form-data">
       @csrf
 
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">{{ __('Title') }}</label>
         <input name="title" type="text" class="form-control" id="title" placeholder="Title of Artickel" required>
       </div>
 
       <div class="form-group">
-        <label for="content">Content</label>
+        <label for="logo">{{ __('Logo') }}</label>
+        <input type="file" name="logo" id="logo" class="form-control-file" required>
+      </div>
+
+      <div class="form-group">
+        <label for="content">{{ __('Content') }}</label>
         <textarea name="content" class="form-control ckeditor" id="content" rows="10" required></textarea>
       </div>
 

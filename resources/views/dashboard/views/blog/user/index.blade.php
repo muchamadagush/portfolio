@@ -25,7 +25,7 @@
       @foreach ($blogs as $blog)
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
-          <img src="" alt="">
+          <img src="{{ 'uploads/images/blog' }}/{{ $blog->logo }}" alt="">
           <div class="card-body">
             <h5 class="card-title">{{ $blog->title }}</h5>
             <p class="card-text">{{  strip_tags(substr($blog->content, 0, 70))  }}</p>

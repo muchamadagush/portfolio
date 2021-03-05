@@ -10,6 +10,8 @@ class Blog extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $fillable = ['title', 'content', 'slug','logo'];
+
 
     public function comments()
     {
