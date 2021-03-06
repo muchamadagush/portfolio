@@ -18,58 +18,69 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Home
+Auth::routes();
+
+// Home page
 Route::get('/', function () {
     return view('dashboard.views.index');
 })->name('home');
 
-// Portfolio view user
+// Portfolio page
 Route::get('/portfolio', [PortfolioController::class, 'display'])->name('portfolioDisplay');
 Route::get('/portfolio/detail/{id}', [PortfolioController::class, 'detail'])->name('portfolioDetail');
 
-// About view user
+// About page
 Route::get('/about', [SkillController::class, 'display'])->name('skillDisplay');
 
-// Contact
+// Contact page
 Route::get('/contact', function () {
     return view('dashboard.views.contact');
 })->name('contact');
 
-
-
-
-// Portfolio
-Route::get('/portfolio/list', [PortfolioController::class, 'index'])->name('portfolioIndex');
-Route::get('/portfolio/add', [PortfolioController::class, 'create'])->name('portfolioCreate')->middleware('auth');
-Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolioStore')->middleware('auth');
-Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolioEdit')->middleware('auth');
-Route::post('/portfolio/update', [PortfolioController::class, 'update'])->name('portfolioUpdate')->middleware('auth');
-Route::get('/portfolio/show/{id}', [PortfolioController::class, 'show'])->name('portfolioShow')->middleware('auth');
-Route::get('/portfolio/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolioDestroy')->middleware('auth');
-
-// Skill
-Route::get('/skill', [SkillController::class, 'index'])->name('skillIndex');
-Route::get('/skill/add', [SkillController::class, 'create'])->name('skillCreate')->middleware('auth');
-Route::post('/skill/store', [SkillController::class, 'store'])->name('skillStore')->middleware('auth');
-
-// Blog
+// Blog page
 Route::get('/blog', [BlogController::class, 'index'])->name('blogIndex');
-Route::get('/blog/create', [BlogController::class, 'create'])->name('blogCreate')->middleware('auth');
-Route::post('/blog/create/images', [BlogController::class, 'contentImage'])->name('blogImage')->middleware('auth');
-Route::post('/blog/store', [BlogController::class, 'store'])->name('blogStore')->middleware('auth');
-Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blogEdit')->middleware('auth');
-Route::post('/blog/update', [BlogController::class, 'update'])->name('blogUpdate')->middleware('auth');
-Route::get('/blog/list', [BlogController::class, 'list'])->name('blogList')->middleware('auth');
-Route::get('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy')->middleware('auth');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blogShow');
 Route::post('/blog/comment', [BlogController::class, 'comment'])->name('blogComment');
 
-// Category
-Route::get('/category', [CategoryController::class, 'index'])->name('categoryIndex')->middleware('auth');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('categoryCreate')->middleware('auth');
-Route::post('/category/store', [CategoryController::class, 'store'])->name('categoryStore')->middleware('auth');
-Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('categoryEdit')->middleware('auth');
-Route::post('/category/update', [CategoryController::class, 'update'])->name('categoryUpdate')->middleware('auth');
-Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('categoryDestroy')->middleware('auth');
+// Middleware Auth
+Route::group(['middleware' => 'auth'], function () {
 
-Auth::routes();
+    // Portfolio
+    Route::prefix('portfolio')->group(function () {
+        Route::get('/list', [PortfolioController::class, 'index'])->name('portfolioIndex');
+        Route::get('/add', [PortfolioController::class, 'create'])->name('portfolioCreate');
+        Route::post('/store', [PortfolioController::class, 'store'])->name('portfolioStore');
+        Route::get('/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolioEdit');
+        Route::post('/update', [PortfolioController::class, 'update'])->name('portfolioUpdate');
+        Route::get('/show/{id}', [PortfolioController::class, 'show'])->name('portfolioShow');
+        Route::get('/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolioDestroy');
+    });
+
+    //Skill
+    Route::prefix('skill')->group(function () {
+        Route::get('/', [SkillController::class, 'index'])->name('skillIndex');
+        Route::get('/add', [SkillController::class, 'create'])->name('skillCreate');
+        Route::post('/store', [SkillController::class, 'store'])->name('skillStore');
+    });
+
+    // Blog
+    Route::prefix('blog')->group(function () {
+        Route::get('/create', [BlogController::class, 'create'])->name('blogCreate');
+        Route::post('/create/images', [BlogController::class, 'contentImage'])->name('blogImage');
+        Route::post('/store', [BlogController::class, 'store'])->name('blogStore');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blogEdit');
+        Route::post('/update', [BlogController::class, 'update'])->name('blogUpdate');
+        Route::get('/list', [BlogController::class, 'list'])->name('blogList')->middleware('auth');
+        Route::get('/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy');
+    });
+
+    // Category
+    Route::prefix('category')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('categoryIndex');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categoryCreate');
+        Route::post('/store', [CategoryController::class, 'store'])->name('categoryStore');
+        Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('categoryEdit');
+        Route::post('/update', [CategoryController::class, 'update'])->name('categoryUpdate');
+        Route::get('/destroy/{category}', [CategoryController::class, 'destroy'])->name('categoryDestroy');
+    });
+});
