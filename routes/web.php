@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -62,5 +63,13 @@ Route::get('/blog/list', [BlogController::class, 'list'])->name('blogList')->mid
 Route::get('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blogDestroy')->middleware('auth');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blogShow');
 Route::post('/blog/comment', [BlogController::class, 'comment'])->name('blogComment');
+
+// Category
+Route::get('/category', [CategoryController::class, 'index'])->name('categoryIndex')->middleware('auth');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('categoryCreate')->middleware('auth');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('categoryStore')->middleware('auth');
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('categoryEdit')->middleware('auth');
+Route::post('/category/update', [CategoryController::class, 'update'])->name('categoryUpdate')->middleware('auth');
+Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('categoryDestroy')->middleware('auth');
 
 Auth::routes();
